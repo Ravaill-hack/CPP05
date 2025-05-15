@@ -17,15 +17,25 @@ class Bureaucrat
 	
 		Bureaucrat(std::string name, int grade);
 
-		std::string			getName() const;
+		const std::string	getName() const;
 		int					getGrade() const;
 
-		void				setName(std::string name);
-		void				setGrade(int grade);
 		void				increaseGrade(int increment);
+		void				decreaseGrade(int decrement);
+
+		class GradTooHighException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+		class GradTooLowException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
 
 	private:
-		std::string			_name;
+		const std::string	_name;
 		int					_grade;
 
 };
