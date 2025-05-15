@@ -20,15 +20,15 @@ class Bureaucrat
 		const std::string	getName() const;
 		int					getGrade() const;
 
-		void				increaseGrade(int increment);
-		void				decreaseGrade(int decrement);
+		void				incrementGrade();
+		void				decrementGrade();
 
-		class GradTooHighException : public std::exception
+		class GradeTooHighException : public std::exception
 		{
 			public:
 				const char *what() const throw();
 		};
-		class GradTooLowException : public std::exception
+		class GradeTooLowException : public std::exception
 		{
 			public:
 				const char *what() const throw();

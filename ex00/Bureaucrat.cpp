@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:59:32 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/15 11:41:25 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:12:43 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 	if (grade < 1)
 	{
 		_grade = 1;
-		throw Bureaucrat::GradTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	}
 	else if (grade > 150)
 	{
 		_grade = 150;
-		throw Bureaucrat::GradTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	}
 	else
 		_grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat & toCopy)
+Bureaucrat::Bureaucrat(const Bureaucrat & toCopy) : _name(toCopy._name + "_copy")
 {
 	*this = toCopy;
 }
@@ -40,10 +40,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat & toCopy)
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat & other)
 {
 	if (this != &other)
-	{
 		_grade = other._grade;
-		std::cout << "Name can't be changed because of const sting type" << std::endl;
-	}
 	return (*this);
 }
 	
@@ -57,30 +54,20 @@ int	Bureaucrat::getGrade() const
 	return (_grade);
 }
 
-void	Bureaucrat::increaseGrade(int increment)
+void	Bureaucrat::incrementGrade()
 {
-	if (increment < 0)
-	{
-		std::cout << "Increase value must be positive" << std::endl;	
-		return;
-	}
-	if (_grade - increment < 1)
-		_grade = 1;
+	if (_grade - 1 < 1)
+		throw Bureaucrat::GradeTooHighException();
 	else
-		_grade = _grade - increment;
+		_grade -= 1;
 }
 
-void	Bureaucrat::decreaseGrade(int decrement)
+void	Bureaucrat::decrementGrade()
 {
-	if (decrement < 0)
-	{
-		std::cout << "Decrease value must be positive" << std::endl;	
-		return;
-	}
-	if (_grade + decrement > 150)
-		_grade = 150;
+	if (_grade + 1 > 150)
+		throw Bureaucrat::GradeTooLowException();
 	else
-		_grade = _grade + decrement;
+		_grade += 1;
 }
 
 std::ostream & operator<<(std::ostream & os, const Bureaucrat & bur)
@@ -89,12 +76,12 @@ std::ostream & operator<<(std::ostream & os, const Bureaucrat & bur)
 	return (os);
 }
 
-const char * Bureaucrat::GradTooHighException::what() const throw()
+const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Error; grade too high");
 }
 
-const char * Bureaucrat::GradTooLowException::what() const throw()
+const char * Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Error; grade too low");
 }
