@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:59:32 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 14:12:20 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:08:02 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,17 @@ void	Bureaucrat::decrementGrade()
 		_grade += 1;
 }
 
-void	Bureaucrat::signForm(Form &formulaire)
+void	Bureaucrat::signForm(AForm &formulaire)
 {
 	try
 	{
 		formulaire.beSigned(*this);
 	}
-	catch(const Form::GradeTooHighException& eh)
+	catch(const AForm::GradeTooHighException& eh)
 	{
 		std::cerr << eh.what() << '\n';
 	}
-	catch(const Form::GradeTooLowException& el)
+	catch(const AForm::GradeTooLowException& el)
 	{
 		std::cerr << el.what() << '\n';
 	}

@@ -7,13 +7,13 @@
 # include <string>
 # include <fstream>
 
-# include "Form.hpp"
+# include "AForm.hpp"
 
 class Bureaucrat
 {
 	public:
 		Bureaucrat();
-		~Bureaucrat();
+		virtual ~Bureaucrat();
 		Bureaucrat(const Bureaucrat & toCopy);
 		Bureaucrat & operator=(const Bureaucrat & other);
 	
@@ -25,7 +25,7 @@ class Bureaucrat
 		void				incrementGrade();
 		void				decrementGrade();
 
-		void				signForm(Form &formulaire);
+		void				signForm(AForm &formulaire);
 
 		class GradeTooHighException : public std::exception
 		{

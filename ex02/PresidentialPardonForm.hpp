@@ -15,8 +15,11 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(const PresidentialPardonForm & toCopy);
 		PresidentialPardonForm & operator=(const PresidentialPardonForm & other);
 
-	private:
+		PresidentialPardonForm(const std::string target);
 
+		void			executeForm(Bureaucrat const & bur) const;
+	private:
+		std::string		_target;
 };
 
 #endif

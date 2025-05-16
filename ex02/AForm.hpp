@@ -13,11 +13,11 @@ class AForm
 {
 	public:
 		AForm();
-		~AForm();
+		virtual ~AForm();
 		AForm(const AForm & toCopy);
 		AForm & operator=(const AForm & other);
 
-		AForm(const std::string name);
+		AForm(const std::string name, const int gradeToSign, const int gradeToExec);
 
 		const std::string	getName() const;
 		bool				getSigned() const;
@@ -36,10 +36,15 @@ class AForm
 			public:
 				const char *what() const throw();
 		};
+		class FormNotSigned : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
 
-		virtual void		executeForm(AForm const & form) const = 0;
+		virtual void		executeForm(Bureaucrat const & bur) const = 0;
 	
-	private:
+	protected:
 		const std::string	_name;
 		bool				_signed;
 		const int			_gradeToSign;

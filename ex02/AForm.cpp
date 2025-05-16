@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:23:55 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 14:47:35 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:56:15 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ AForm & AForm::operator=(const AForm & other)
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-AForm::AForm(const std::string name) : _name(name), _gradeToSign(150), _gradeToExec(150)
+AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
 {
 	_signed = false;
 }
@@ -89,6 +89,11 @@ const char * AForm::GradeTooHighException::what() const throw()
 const char * AForm::GradeTooLowException::what() const throw()
 {
 	return ("grade too low");
+}
+
+const char * AForm::FormNotSigned::what() const throw()
+{
+	return ("form needs to be signed first");
 }
 
 ////////////////////////////////////////////////////////////////////////////////

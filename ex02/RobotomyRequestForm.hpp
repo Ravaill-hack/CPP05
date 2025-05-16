@@ -15,7 +15,11 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm(const RobotomyRequestForm & toCopy);
 		RobotomyRequestForm & operator=(const RobotomyRequestForm & other);
 
+		RobotomyRequestForm(const std::string name);
+
+		void			executeForm(Bureaucrat const & bur) const;
 	private:
+		std::string		_target;
 	
 };
 

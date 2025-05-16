@@ -6,11 +6,12 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:41:31 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 15:35:18 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:11:01 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
+#include "Bureaucrat.hpp"
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///
@@ -18,24 +19,23 @@
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-PresidentialPardonForm::PresidentialPardonForm()
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5)
 {
-	
+	_target = "Default target";
 }
 
-PresidentialPardonForm::~PresidentialPardonForm()
-{
-	
-}
+PresidentialPardonForm::~PresidentialPardonForm(){}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm & toCopy)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm & toCopy) : AForm(toCopy.getName(), 25, 5)
 {
-	
+	*this = toCopy;
 }
 
 PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPardonForm & other)
 {
-	
+	if (this != &other)
+		_target = other._target;
+	return (*this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -44,15 +44,10 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPar
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-
-
-////////////////////////////////////////////////////////////////////////////////
-///                                                                          ///
-///                               GETTERS                                    ///
-///                                                                          ///
-////////////////////////////////////////////////////////////////////////////////
-
-
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5)
+{
+	_target = target;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///
@@ -60,5 +55,19 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPar
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-
+void	PresidentialPardonForm::executeForm(Bureaucrat const & bur) const
+{
+	if (this->getSigned())
+	{
+		if (bur.getGrade() <= this->getGradeToExec())
+		{
+			std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+		}
+		else
+			throw AForm::GradeTooLowException();
+	}
+	else
+		throw AForm::FormNotSigned();
+	
+}
 
