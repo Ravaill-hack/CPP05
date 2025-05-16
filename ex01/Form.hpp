@@ -6,7 +6,8 @@
 # include <fstream>
 # include <iomanip>
 # include <string>
-# include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {

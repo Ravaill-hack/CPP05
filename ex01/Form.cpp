@@ -6,11 +6,12 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:23:55 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/15 15:26:10 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:16:23 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///
@@ -18,11 +19,17 @@
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-Form::Form() : _signed(false), _name("default form"), _gradeToSign(150), _gradeToExec(150){}
+Form::Form() : _name("default form"), _gradeToSign(150), _gradeToExec(150)
+{
+	_signed = false;
+}
 
 Form::~Form(){}
 
-Form::Form(const Form & toCopy) : _signed(toCopy._signed), _name(toCopy._name), _gradeToSign(toCopy._gradeToSign), _gradeToExec(toCopy._gradeToExec){}
+Form::Form(const Form & toCopy) : _name(toCopy._name), _gradeToSign(toCopy._gradeToSign), _gradeToExec(toCopy._gradeToExec)
+{
+	_signed = toCopy._signed;
+}
 
 Form & Form::operator=(const Form & other)
 {
@@ -37,7 +44,10 @@ Form & Form::operator=(const Form & other)
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-Form::Form(const std::string name, const int gradeToSign, const int gradeToExec) : _signed(false), _name(name), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec){}
+Form::Form(const std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
+{
+	_signed = false;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///
