@@ -10,6 +10,10 @@
 class RobotomyRequestForm : public AForm
 {
 	public:
+		RobotomyRequestForm();
+		~RobotomyRequestForm();
+		RobotomyRequestForm(const RobotomyRequestForm & toCopy);
+		RobotomyRequestForm & operator=(const RobotomyRequestForm & other);
 
 	private:
 	

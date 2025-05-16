@@ -10,6 +10,10 @@
 class PresidentialPardonForm : public AForm
 {
 	public:
+		PresidentialPardonForm();
+		~PresidentialPardonForm();
+		PresidentialPardonForm(const PresidentialPardonForm & toCopy);
+		PresidentialPardonForm & operator=(const PresidentialPardonForm & other);
 
 	private:
 
