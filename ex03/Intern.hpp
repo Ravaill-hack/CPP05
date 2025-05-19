@@ -21,13 +21,16 @@ class Intern
 		Intern(const Intern & toCopy);
 		Intern & operator=(const Intern & other);
 
-		AForm	*makeForm(const std::string form, const std::string target) const;
+		AForm	*makeForm(const std::string form, const std::string target);
 		
 		class FormDoesNotExist : public std::exception
 		{
 			public:
 				const char *what() const throw();
 		};
+	
+	private:
+		AForm	*_adrForms[100];
 
 };
 

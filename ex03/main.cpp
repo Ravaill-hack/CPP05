@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:40:49 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 11:29:29 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:53:56 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	main(void)
         AForm 	*shrubForm;
         AForm 	*robotForm;
         AForm 	*pardonForm;
-		AForm	*testForm;
+		//AForm	*testForm;
 
 		shrubForm = Intern01.makeForm("ShrubberyCreationForm", "Monica Bellucci");
 		robotForm = Intern01.makeForm("RobotomyRequestForm", "Brad Pitt");
 		pardonForm = Intern01.makeForm("PresidentialPardonForm", "Valerie Damido");
-		testForm = aRandomIntern.makeForm("test", "a random guy");
+		//testForm = aRandomIntern.makeForm("test", "a random guy");
 
         std::cout << "\n=== Attempting to execute forms without signing ===" << std::endl;
         try
@@ -71,9 +71,6 @@ int	main(void)
         std::cout << "\n=== Trying to sign with insufficient grade ===" << std::endl;
         Jul.signForm(*shrubForm); // grade trop bas
 
-		delete shrubForm;
-		delete robotForm;
-		delete pardonForm;
     }
 	catch (std::exception &e)
 	{
