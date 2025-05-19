@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:40:49 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 10:34:25 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:43:16 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(void)
 	{
 		std::cout << "\n=== Bureaucrats creation ===" << std::endl;
         Bureaucrat boss("Boss", 1);      
-        Bureaucrat MyleneFarmer("Mylene Farmer", 140);        // Grade moyen
-        Bureaucrat Jul("Jul", 150); // Grade le plus bas
+        Bureaucrat MyleneFarmer("Mylene Farmer", 140);
+        Bureaucrat Jul("Jul", 150);
 
 		std::cout << "\n=== Forms creation ===" << std::endl;
         ShrubberyCreationForm shrubForm("Monica Bellucci");
@@ -46,7 +46,7 @@ int	main(void)
         boss.signForm(pardonForm);
 
         std::cout << "\n=== Trying to sign already signed form ===" << std::endl;
-        boss.signForm(shrubForm); // déjà signé
+        boss.signForm(shrubForm);
 
         std::cout << "\n=== Executing forms with sufficient grade ===" << std::endl;
         boss.executeForm(shrubForm);
@@ -54,10 +54,10 @@ int	main(void)
         boss.executeForm(pardonForm);
 
         std::cout << "\n=== Trying to execute with insufficient grade ===" << std::endl;
-        MyleneFarmer.executeForm(robotForm); // pas assez de grade
+        MyleneFarmer.executeForm(robotForm);
 
         std::cout << "\n=== Trying to sign with insufficient grade ===" << std::endl;
-        Jul.signForm(shrubForm); // grade trop bas
+        Jul.signForm(shrubForm);
 
     }
 	catch (std::exception &e)
