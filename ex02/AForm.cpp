@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:23:55 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 16:56:15 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:36:17 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,13 @@ void	AForm::beSigned(const Bureaucrat & Bur)
 	}
 	else
 	{
-		std::cerr << Bur.getName() << " signed " << _name << std::endl;
-		_signed = true;
+		if (_signed == false)
+		{
+			std::cerr << Bur.getName() << " signed " << _name << std::endl;
+			_signed = true;
+		}
+		else
+			std::cout << _name << " is already signed" << std::endl;
 	}
 }
 

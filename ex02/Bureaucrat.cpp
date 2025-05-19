@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:59:32 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 10:26:06 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:37:08 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,10 @@ void	Bureaucrat::signForm(AForm &formulaire)
 
 void	Bureaucrat::executeForm(const AForm & form)
 {
-		try
+	try
 	{
 		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
 	}
 	catch(const AForm::GradeTooHighException& eh)
 	{

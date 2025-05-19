@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:41:31 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 10:21:18 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:31:44 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5)
 {
 	_target = "Default target";
+	std::cout << _name << " with target " << _target << " has been created" << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(){}
@@ -29,6 +30,7 @@ PresidentialPardonForm::~PresidentialPardonForm(){}
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm & toCopy) : AForm(toCopy.getName(), 25, 5)
 {
 	*this = toCopy;
+	std::cout << _name << " with target " << _target << " has been created by copy" << std::endl;
 }
 
 PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPardonForm & other)
@@ -44,7 +46,10 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPar
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target){}
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
+{
+	std::cout << _name << " with target " << _target << " has been created" << std::endl;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///

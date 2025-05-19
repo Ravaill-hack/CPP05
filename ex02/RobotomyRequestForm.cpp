@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:41:36 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 10:21:09 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:33:02 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45)
 {
 	_target = "Default target";
+	std::cout << _name << " with target " << _target << " has been created" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(){}
@@ -31,6 +32,7 @@ RobotomyRequestForm::~RobotomyRequestForm(){}
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & toCopy) : AForm(toCopy.getName(), 72, 45)
 {
 	*this = toCopy;
+	std::cout << _name << " with target " << _target << " has been created by copy" << std::endl;
 }
 
 RobotomyRequestForm & RobotomyRequestForm::operator=(const RobotomyRequestForm & other)
@@ -46,7 +48,10 @@ RobotomyRequestForm & RobotomyRequestForm::operator=(const RobotomyRequestForm &
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target){}
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
+{
+	std::cout << _name << " with target " << _target << " has been created" << std::endl;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///

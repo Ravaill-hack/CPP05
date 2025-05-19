@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:40:49 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 10:23:36 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:34:25 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int	main(void)
 
 	try
 	{
+		std::cout << "\n=== Bureaucrats creation ===" << std::endl;
         Bureaucrat boss("Boss", 1);      
         Bureaucrat MyleneFarmer("Mylene Farmer", 140);        // Grade moyen
         Bureaucrat Jul("Jul", 150); // Grade le plus bas
 
+		std::cout << "\n=== Forms creation ===" << std::endl;
         ShrubberyCreationForm shrubForm("Monica Bellucci");
         RobotomyRequestForm robotForm("Brad Pitt");
         PresidentialPardonForm pardonForm("Valerie Damido");
