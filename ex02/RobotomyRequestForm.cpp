@@ -6,12 +6,14 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:41:36 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 17:16:43 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:21:09 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
+#include <cstdlib>
+#include <ctime>
 
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///
@@ -44,9 +46,17 @@ RobotomyRequestForm & RobotomyRequestForm::operator=(const RobotomyRequestForm &
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("RobotomyRequestForm", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target){}
+
+////////////////////////////////////////////////////////////////////////////////
+///                                                                          ///
+///                                 GETTERS                                  ///
+///                                                                          ///
+////////////////////////////////////////////////////////////////////////////////
+
+std::string		RobotomyRequestForm::getTarget() const
 {
-	_target = target;
+	return (_target);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,13 +65,18 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("Robo
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-void	RobotomyRequestForm::executeForm(Bureaucrat const & bur) const
+void	RobotomyRequestForm::execute(Bureaucrat const & bur) const
 {
 	if (this->getSigned())
 	{
 		if (bur.getGrade() <= this->getGradeToExec())
 		{
-			//to complete
+			std::srand(std::time(NULL));
+			std::cout << "DRRRRRRRRZBIPBIPBIPBIP" << std::endl;
+			if (std::rand() % 2 == 0)
+				std::cout << _target << " has been robotomized successfully" << std::endl;
+			else
+				std::cout << _target << " robotomization failed" << std::endl;
 		}
 		else
 			throw AForm::GradeTooLowException();

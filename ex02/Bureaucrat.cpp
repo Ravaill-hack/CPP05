@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:59:32 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 17:08:02 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:26:06 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-Bureaucrat::Bureaucrat() : _name("Default"), _grade(150){}
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
+{
+	std::cout << *this << " has been created " << std::endl;
+}
 
 Bureaucrat::~Bureaucrat(){}
 
 Bureaucrat::Bureaucrat(const Bureaucrat & toCopy) : _name(toCopy._name + "_copy")
 {
 	*this = toCopy;
+	std::cout << *this << " has been created by copy" << std::endl;
 }
 
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat & other)
@@ -53,7 +57,10 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 		throw Bureaucrat::GradeTooLowException();
 	}
 	else
+	{
 		_grade = grade;
+		std::cout << *this << " has been created " << std::endl;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,6 +106,22 @@ void	Bureaucrat::signForm(AForm &formulaire)
 	try
 	{
 		formulaire.beSigned(*this);
+	}
+	catch(const AForm::GradeTooHighException& eh)
+	{
+		std::cerr << eh.what() << '\n';
+	}
+	catch(const AForm::GradeTooLowException& el)
+	{
+		std::cerr << el.what() << '\n';
+	}
+}
+
+void	Bureaucrat::executeForm(const AForm & form)
+{
+		try
+	{
+		form.execute(*this);
 	}
 	catch(const AForm::GradeTooHighException& eh)
 	{

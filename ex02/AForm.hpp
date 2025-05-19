@@ -42,7 +42,7 @@ class AForm
 				const char *what() const throw();
 		};
 
-		virtual void		executeForm(Bureaucrat const & bur) const = 0;
+		virtual void		execute(Bureaucrat const & bur) const = 0;
 	
 	protected:
 		const std::string	_name;

@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:41:31 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 17:11:01 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:21:18 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,17 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPar
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target){}
+
+////////////////////////////////////////////////////////////////////////////////
+///                                                                          ///
+///                                 GETTERS                                  ///
+///                                                                          ///
+////////////////////////////////////////////////////////////////////////////////
+
+std::string		PresidentialPardonForm::getTarget() const
 {
-	_target = target;
+	return (_target);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,7 +63,7 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-void	PresidentialPardonForm::executeForm(Bureaucrat const & bur) const
+void	PresidentialPardonForm::execute(Bureaucrat const & bur) const
 {
 	if (this->getSigned())
 	{

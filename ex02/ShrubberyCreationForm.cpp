@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:41:39 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 17:16:53 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:20:53 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,17 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(const ShrubberyCreation
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target){}
+
+////////////////////////////////////////////////////////////////////////////////
+///                                                                          ///
+///                                 GETTERS                                  ///
+///                                                                          ///
+////////////////////////////////////////////////////////////////////////////////
+
+std::string		ShrubberyCreationForm::getTarget() const
 {
-	_target = target;
+	return (_target);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,13 +63,42 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
 
-void	ShrubberyCreationForm::executeForm(Bureaucrat const & bur) const
+void	ShrubberyCreationForm::execute(Bureaucrat const & bur) const
 {
 	if (this->getSigned())
 	{
 		if (bur.getGrade() <= this->getGradeToExec())
 		{
-			//to complete
+			const std::string	outfile = _target + "_shrubbery";
+			std::ofstream		outstream;
+			
+			outstream.open(outfile.c_str(), std::ofstream::out | std::ofstream::trunc);
+			if (!outstream)
+				std::cerr << "Error: cannot create shrubbery outfile" << std::endl;
+			else
+			{
+				outstream << "                                    " << std::endl;
+				outstream << "       /\\                           " << std::endl;
+				outstream << "      /  \\                 /\\       " << std::endl;
+				outstream << "     /    \\            /\\ /  \\      " << std::endl;
+				outstream << "    /      \\          /  \\_  _\\     " << std::endl;
+				outstream << "   /___  ___\\        /    \\||       " << std::endl;
+				outstream << "       ||           /__  __\\        " << std::endl;
+				outstream << "              /\\       ||           " << std::endl;
+				outstream << "             /  \\                   " << std::endl;
+				outstream << "             /  \\         / *\\      " << std::endl;
+				outstream << "            /    \\      ( ()   )    " << std::endl;
+				outstream << "            /    \\     ( *)     )   " << std::endl;
+				outstream << "           /      \\      (    )     " << std::endl;
+				outstream << "          / /    \\ \\       ||       " << std::endl;
+				outstream << "          /        \\                " << std::endl;
+				outstream << "         /          \\               " << std::endl;
+				outstream << "        /            \\              " << std::endl;
+				outstream << "       /__/__|  |__\\__\\             " << std::endl;
+				outstream << "             |  |                   " << std::endl;
+				std::cout << outfile << " created" <<std::endl;
+
+			}
 		}
 		else
 			throw AForm::GradeTooLowException();
