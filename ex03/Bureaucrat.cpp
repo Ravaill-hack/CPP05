@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:59:32 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/20 11:12:47 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:49:14 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,11 +157,11 @@ void	Bureaucrat::executeForm(const AForm & form)
 	}
 	catch(const AForm::GradeTooLowException& e)
 	{
-		std::cerr << "Form " << form.getName() << " couldn't be executed because " << e.what() << '\n';
+		std::cerr << "Form " << form.getName() << " couldn't be executed because " << e.what() << std::endl;
 	}
 	catch(const AForm::FormNotSigned& e)
 	{
-		std::cerr << "Form " << form.getName() << " couldn't be executed because " << e.what() << '\n';
+		std::cerr << "Form " << form.getName() << " couldn't be executed because " << e.what() << std::endl;
 	}
 }
 
