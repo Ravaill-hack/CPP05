@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 10:48:27 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 14:12:02 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:28:19 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,18 @@ Intern & Intern::operator=(const Intern & other)
 
 AForm	*Intern::makeForm(const std::string form, const std::string target)
 {
-	if (form == "PresidentialPardonForm")
+	int	i = 0;
+	std::string	FormTypes[3] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
+	(*FunctionsTab[3])(const std::string) = {PresidentialPardonForm, RobotomyRequestForm, ShrubberyCreationForm};
+	
+	while (i < 3)
 	{
-		std::cout << "Intern creates " << form << std::endl;
-		return (new PresidentialPardonForm(target));
+		if (form == FormTypes[i])
+			return (new FunctionsTab[i]);
+		i++;
 	}
-	else if (form == "RobotomyRequestForm")
-	{
-		std::cout << "Intern creates " << form << std::endl;
-		return (new RobotomyRequestForm(target));
-	}
-	else if (form == "ShrubberyCreationForm")
-	{
-		std::cout << "Intern creates " << form << std::endl;
-		return (new ShrubberyCreationForm(target));
-	}
-	else
-	{
-		std::cerr << "Type " << form << " is not a valid form type" << std::endl;
-		return (NULL);
-	}
+	std::cerr << "Type " << form << " is not a valid form type" << std::endl;
+	return (NULL);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -74,3 +66,18 @@ AForm	*Intern::makeForm(const std::string form, const std::string target)
 ///                              NON MEMBERS                                 ///
 ///                                                                          ///
 ////////////////////////////////////////////////////////////////////////////////
+
+AForm *NewPresidential(const std::string &target)
+{
+	return new PresidentialPardonForm(target);
+}
+
+AForm *NewRobotomy(const std::string &target)
+{
+	return new RobotomyRequestForm(target);
+}
+
+AForm *NewShrubbery(const std::string &target)
+{
+	return new ShrubberyCreationForm(target);
+}

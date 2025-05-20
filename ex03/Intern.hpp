@@ -25,4 +25,8 @@ class Intern
 
 };
 
+AForm *NewPresidential(const std::string &target);
+AForm *NewRobotomy(const std::string &target);
+AForm *NewShrubbery(const std::string &target);
+
 #endif
