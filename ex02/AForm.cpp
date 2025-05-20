@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:23:55 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/19 10:36:17 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:23:29 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,14 @@ const char * AForm::GradeTooLowException::what() const throw()
 	return ("grade too low");
 }
 
+const char * AForm::AlreadySignedException::what() const throw()
+{
+	return ("already signed");
+}
+
 const char * AForm::FormNotSigned::what() const throw()
 {
-	return ("form needs to be signed first");
+	return ("needs to be signed first");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -104,21 +109,12 @@ const char * AForm::FormNotSigned::what() const throw()
 
 void	AForm::beSigned(const Bureaucrat & Bur)
 {
-	if (Bur.getGrade() >= _gradeToSign)
-	{
-		std::cerr << Bur.getName() << " couldn't sign " << _name << " because ";
+	if (_signed == true)
+		throw AForm::AlreadySignedException();
+	else if (Bur.getGrade() >= _gradeToSign)
 		throw AForm::GradeTooLowException();
-	}
 	else
-	{
-		if (_signed == false)
-		{
-			std::cerr << Bur.getName() << " signed " << _name << std::endl;
-			_signed = true;
-		}
-		else
-			std::cout << _name << " is already signed" << std::endl;
-	}
+		_signed = true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

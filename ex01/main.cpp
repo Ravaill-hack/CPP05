@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:40:49 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/20 10:15:30 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:25:41 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(void)
 	Bureaucrat	Default_bureaucrat;
 	Bureaucrat	Boss("Boss", 1);
 	Bureaucrat	Intrigant("Un intrigant a la cour", 15);
+	Bureaucrat	UltimateBoss("Boss Ultime", 0);
 	Bureaucrat	Servant("Servant", 150);
 	Bureaucrat	Copy(Servant);
 	Form		Def_form;
