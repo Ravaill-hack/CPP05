@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:59:32 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 14:12:20 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:20:28 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,26 @@ Bureaucrat & Bureaucrat::operator=(const Bureaucrat & other)
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	if (grade < 1)
+	try
 	{
-		_grade = 1;
-		throw Bureaucrat::GradeTooHighException();
+		if (grade < 1)
+		{
+			_grade = 1;
+			throw Bureaucrat::GradeTooHighException();
+		}
+		else if (grade > 150)
+		{
+			_grade = 150;
+			throw Bureaucrat::GradeTooLowException();
+		}
+		else
+			_grade = grade;
 	}
-	else if (grade > 150)
+	catch(std::exception &e)
 	{
-		_grade = 150;
-		throw Bureaucrat::GradeTooLowException();
+		std::cerr << "Couldn't create " << name << " because " << e.what() << std::endl;
+		std::cerr << "Specify a grade between 1 and 150" << std::endl;
 	}
-	else
-		_grade = grade;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -80,33 +88,57 @@ int	Bureaucrat::getGrade() const
 
 void	Bureaucrat::incrementGrade()
 {
-	if (_grade - 1 < 1)
-		throw Bureaucrat::GradeTooHighException();
-	else
-		_grade -= 1;
+	std::cout << "\nYou want to increment " << this->_name << " grade, which is currently of " << this->_grade <<std::endl;
+	try
+	{
+		if (_grade - 1 < 1)
+			throw Bureaucrat::GradeTooHighException();
+		else
+		{
+			_grade -= 1;
+			std::cout << this->_name << "'s new grade is now " << this->_grade << std::endl;
+		}
+	}
+	catch (Bureaucrat::GradeTooHighException &e)
+	{
+		std::cerr << "Couldn't increment " << this->_name << " because " << e.what() << std::endl;
+	}
 }
 
 void	Bureaucrat::decrementGrade()
 {
-	if (_grade + 1 > 150)
-		throw Bureaucrat::GradeTooLowException();
-	else
-		_grade += 1;
+	std::cout << "\nYou want to decrement " << this->_name << " grade, which is currently of " << this->_grade <<std::endl;
+	try
+	{
+		if (_grade + 1 > 150)
+			throw Bureaucrat::GradeTooLowException();
+		else
+		{
+			_grade += 1;
+			std::cout << this->_name << "'s new grade is now " << this->_grade << std::endl;
+		}
+	}
+	catch (Bureaucrat::GradeTooLowException &e)
+	{
+		std::cerr << "Couldn't decrement " << this->_name << " because " << e.what() << std::endl;
+	}
 }
 
 void	Bureaucrat::signForm(Form &formulaire)
 {
+	std::cout << "\n" << this->_name << " wants to sign " << formulaire.getName() <<std::endl;
 	try
 	{
 		formulaire.beSigned(*this);
-	}
-	catch(const Form::GradeTooHighException& eh)
-	{
-		std::cerr << eh.what() << '\n';
+		std::cout << "Form " << formulaire.getName() << " has been successfully signed by " << this->_name << std::endl;
 	}
 	catch(const Form::GradeTooLowException& el)
 	{
-		std::cerr << el.what() << '\n';
+		std::cerr << "Form " << formulaire.getName() << " couldn't be signed because " << this->_name << "'s " << el.what() << '\n';
+	}
+	catch(const Form::AlreadySignedException& el)
+	{
+		std::cerr << "Form " << formulaire.getName() << " has been " << el.what() << '\n';
 	}
 }
 
@@ -118,12 +150,12 @@ void	Bureaucrat::signForm(Form &formulaire)
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Error; grade too high");
+	return ("grade too high");
 }
 
 const char * Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Error; grade too low");
+	return ("grade too low");
 }
 
 ////////////////////////////////////////////////////////////////////////////////

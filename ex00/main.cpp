@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 10:40:49 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/15 14:13:49 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 09:50:46 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	main(void)
 {
 
+	std::cout << "\n=== Declaration ===" << std::endl;
+	
 	Bureaucrat	Default_bureaucrat;
 	Bureaucrat	Boss("Boss", 1);
 	Bureaucrat	Servant("Servant", 150);
@@ -25,31 +27,10 @@ int	main(void)
 	std::cout << Servant << std::endl;
 	std::cout << Copy << std::endl;
 
-	try
-	{
-		Default_bureaucrat.decrementGrade();
-	}
-	catch(Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch(Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << Copy << std::endl;
-	try
-	{
-		Copy.incrementGrade();
-	}
-	catch(Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch(Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	std::cout << Copy << std::endl;
+	std::cout << "\n=== Attemptimg to decrement or increment grade ===" << std::endl;
+	
+	Default_bureaucrat.decrementGrade();
+	Copy.incrementGrade();
+	
 	return (0);
 }

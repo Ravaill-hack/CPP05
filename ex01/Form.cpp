@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:23:55 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/16 14:16:23 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:19:08 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ const char * Form::GradeTooLowException::what() const throw()
 	return ("grade too low");
 }
 
+const char * Form::AlreadySignedException::what() const throw()
+{
+	return ("already signed");
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 ///                                                                          ///
 ///                             OTHER MEMBERS                                ///
@@ -99,16 +104,12 @@ const char * Form::GradeTooLowException::what() const throw()
 
 void	Form::beSigned(const Bureaucrat & Bur)
 {
-	if (Bur.getGrade() >= _gradeToSign)
-	{
-		std::cerr << Bur.getName() << " couldn't sign " << _name << " because ";
+	if (_signed == true)
+		throw Form::AlreadySignedException();
+	else if (Bur.getGrade() >= _gradeToSign)
 		throw Form::GradeTooLowException();
-	}
 	else
-	{
-		std::cerr << Bur.getName() << " signed " << _name << std::endl;
 		_signed = true;
-	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
