@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 10:48:27 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/20 11:28:19 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:55:08 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,11 @@ AForm	*Intern::makeForm(const std::string form, const std::string target)
 {
 	int	i = 0;
 	std::string	FormTypes[3] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
-	(*FunctionsTab[3])(const std::string) = {PresidentialPardonForm, RobotomyRequestForm, ShrubberyCreationForm};
-	
+	AForm *(*FunctionsTab[3])(const std::string &) = {NewPresidential, NewRobotomy, NewShrubbery};
 	while (i < 3)
 	{
 		if (form == FormTypes[i])
-			return (new FunctionsTab[i]);
+			return (FunctionsTab[i](target));
 		i++;
 	}
 	std::cerr << "Type " << form << " is not a valid form type" << std::endl;
